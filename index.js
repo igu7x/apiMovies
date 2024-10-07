@@ -1,12 +1,17 @@
-const { json } = require("body-parser");
-const express = require("express");
-const server = express();
+const cors = require('cors');
+const express = require('express');
+ 
+const app = express();
+app.use(cors()); // Permite CORS
+ 
 const filmes = require('./src/data/filmes.json');
-
-server.get("/filmes", (req, res) => {
+ 
+// Rota para retornar filmes
+app.get("/filmes", (req, res) => {
   return res.json(filmes);
 });
 
-server.listen(3000, () => {
+// Inicia o servidor na porta 3000
+app.listen(3000, () => {
   console.log("Servidor está funcionando!");
 });
